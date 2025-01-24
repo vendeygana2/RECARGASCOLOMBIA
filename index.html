@@ -64,14 +64,15 @@
             margin-top: 10px; /* Ajuste de margen superior */
         }
         .header-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Distribución equitativa de las imágenes */
-            gap: 10px; /* Espacio entre imágenes */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around; /* Distribución equitativa */
             margin-bottom: 10px;
         }
         .header-images img {
-            width: 100%; /* Ajuste del tamaño de las imágenes */
+            width: 16%; /* Reducción adicional del tamaño de las imágenes en un 20% */
             height: auto;
+            margin: 5px;
         }
         .botones {
             display: flex;
