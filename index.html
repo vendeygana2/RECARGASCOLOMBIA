@@ -6,10 +6,10 @@
     <title>Recargas Colombia</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
         .overlay {
             position: fixed;
@@ -17,146 +17,77 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
         }
-        .venta {
-            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
-            border: 4px solid #ed7318; /* Marco más grueso y color naranja */
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 600px; /* Ajuste del tamaño de la venta */
-            text-align: center;
-            position: relative;
-        }
-        .venta-background {
+        .form-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg'); /* URL de la bandera de Colombia */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.1; /* Hacer la imagen más tenue */
-            z-index: 0;
-            border-radius: 15px;
-        }
-        .venta-content {
-            position: relative;
-            z-index: 1;
-        }
-        .venta p, .venta ul {
-            margin: 10px 0; /* Ajuste de margen para pegar más el texto al logo */
-            color: black; /* Texto en color negro */
-            font-size: 16px;
-            text-align: left; /* Alinear texto a la izquierda */
-        }
-        .header-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: black; /* Texto en color negro */
-            margin-top: 10px; /* Ajuste de margen superior */
-        }
-        .header-images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around; /* Distribución equitativa */
-            margin-bottom: 10px;
-        }
-        .header-images img {
-            width: 16%; /* Reducción adicional del tamaño de las imágenes en un 20% */
-            height: auto;
-            margin: 5px;
-        }
-        .botones {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .boton {
-            background-color: #003366; /* Color del botón de recargar (azul oscuro) */
-            color: white;
-            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-        .boton-volver {
-            background-color: #ed7318; /* Color naranja */
-        }
-        .boton:hover {
-            background-color: #002244; /* Azul oscuro más oscuro */
-        }
-        .boton-volver:hover {
-            background-color: #d66616; /* Color naranja oscuro */
         }
         .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: red;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: #ff0000;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            cursor: pointer;
-            text-align: center;
-            line-height: 25px;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
             font-weight: bold;
-            z-index: 2;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .close-button {
+                top: 10px;
+                right: 10px;
+                width: 25px;
+                height: 25px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
-<body onload="openModal()">
-    <div class="overlay" id="overlay">
-        <div class="venta">
-            <div class="venta-background"></div>
-            <button class="close-button" onclick="window.location.href='https://www.vendeygana.net/user/'">X</button>
-            <div class="venta-content">
-                <div class="header-images">
-                    <img src="https://1000marcas.net/wp-content/uploads/2021/02/Claro-Logo.png" alt="Claro">
-                    <img src="https://1000marcas.net/wp-content/uploads/2019/12/logo-Movista.png" alt="Movistar">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Logo_Tigo.svg/2560px-Logo_Tigo.svg.png" alt="Tigo">
-                    <img src="https://seeklogo.com/images/A/avantel-logo-52C9F6E667-seeklogo.com.png" alt="Avantel">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Logo_Exito_colombia.png" alt="Éxito">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Virgin_Mobile_logo.svg/3000px-Virgin_Mobile_logo.svg.png" alt="Virgin Mobile">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/ETB_Bogot%C3%A1_logo.svg/640px-ETB_Bogot%C3%A1_logo.svg.png" alt="ETB">
-                    <img src="https://catalogosimagenesportaldiri.s3.us-east-2.amazonaws.com/FlashMobile/CO/Webiste/flash_color.png" alt="Flash Mobile">
-                </div>
-                <div class="header-title">💡 RECARGAS COLOMBIA: VENDE Y GANA te ofrece las recargas a la mejor tasa de cambio.</div>
-                <p>🌟 <strong>Servicios Disponibles:</strong></p>
-                <ul>
-                    <li>• Tigo</li>
-                    <li>• Claro</li>
-                    <li>• Avantel</li>
-                    <li>• Movistar</li>
-                    <li>• Éxito</li>
-                    <li>• Virgin Mobile</li>
-                    <li>• ETB</li>
-                    <li>• Flash Mobile</li>
-                </ul>
-                <p>📲 Compra tu recarga hoy y disfruta de una conexión sin interrupciones.</p>
-                <div class="botones">
-                    <button class="boton" onclick="window.location.href='https://dptodecomprasvg.company.site/products/RECARGAS-COLOMBIA-p721785368'">Recargar</button>
-                    <button class="boton boton-volver" onclick="window.location.href='https://www.vendeygana.net/user/'">Volver a Vende y Gana</button>
-                </div>
-            </div>
+<body>
+    <div class="overlay">
+        <button class="close-button" onclick="window.location.href='https://www.vendeygana.net/user/'">×</button>
+        <div class="form-container">
+            <iframe src="https://vendeygana.forms.app/recargamovilcolombia" 
+                    title="Formulario de Recargas" 
+                    allowfullscreen>
+            </iframe>
         </div>
     </div>
 
     <script>
-        function openModal() {
-            document.getElementById('overlay').style.display = 'flex';
-        }
+        // Forzar recarga al volver (para navegadores que cachean el iframe)
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        };
+        
+        // Opcional: cerrar con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                window.location.href = 'https://www.vendeygana.net/user/';
+            }
+        });
     </script>
 </body>
 </html>
