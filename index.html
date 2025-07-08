@@ -9,29 +9,38 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-        }
-        .form-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        
         .close-button {
-            position: fixed;
-            top: 15px;
-            right: 15px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
             background-color: #ff0000;
             color: white;
             border: none;
@@ -47,47 +56,89 @@
             align-items: center;
             justify-content: center;
         }
-        iframe {
+        
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 120%; /* Proporción inicial para móviles */
+        }
+        
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
         }
-        @media (max-width: 768px) {
-            .close-button {
-                top: 10px;
-                right: 10px;
-                width: 25px;
-                height: 25px;
-                font-size: 14px;
+        
+        @media (min-width: 768px) {
+            .modal-content {
+                margin: 2% auto;
+            }
+            .iframe-container {
+                padding-bottom: 70%; /* Proporción para pantallas más grandes */
             }
         }
     </style>
 </head>
 <body>
-    <div class="overlay">
-        <button class="close-button" onclick="window.location.href='https://www.vendeygana.net/user/'">×</button>
-        <div class="form-container">
-            <iframe src="https://vendeygana.forms.app/recargamovilcolombia" 
-                    title="Formulario de Recargas" 
-                    allowfullscreen>
-            </iframe>
+    <!-- Botón para abrir el modal (puedes eliminarlo si no lo necesitas) -->
+    <button id="openModalBtn" style="display:none;">Abrir Formulario</button>
+
+    <!-- Ventana modal -->
+    <div id="recargasModal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">×</button>
+            <div class="iframe-container">
+                <iframe src="https://96vxnn73.forms.app/recargamovilcolombia" 
+                        title="Formulario de Recargas" 
+                        allowfullscreen>
+                </iframe>
+            </div>
         </div>
     </div>
 
     <script>
+        // Mostrar el modal automáticamente al cargar la página
+        window.onload = function() {
+            openModal();
+        };
+        
+        // Función para abrir el modal
+        function openModal() {
+            document.getElementById('recargasModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Evitar scroll en el fondo
+        }
+        
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('recargasModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+            window.location.href = 'https://www.vendeygana.net/user/';
+        }
+        
+        // Cerrar al presionar ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+        
+        // Cerrar al hacer clic fuera del contenido del modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('recargasModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+        
         // Forzar recarga al volver (para navegadores que cachean el iframe)
         window.onpageshow = function(event) {
             if (event.persisted) {
                 window.location.reload();
             }
         };
-        
-        // Opcional: cerrar con la tecla ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                window.location.href = 'https://www.vendeygana.net/user/';
-            }
-        });
     </script>
 </body>
 </html>
